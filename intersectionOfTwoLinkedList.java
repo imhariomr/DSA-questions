@@ -24,23 +24,19 @@ public class intersectionOfTwoLinkedList {
     }
 
     public static Node intersection(Node l1, Node l2) {
-        Node dummyNode = new Node(0);
-        Node temp = dummyNode;
-
-        while (l1 != null && l2 != null) {
-            if (l1.data == l2.data) {
-                temp.next = new Node(l1.data);
-                temp = temp.next;
-                l1 = l1.next;
-                l2 = l2.next;
-
-            } else if (l1.data < l2.data) {
-                l1 = l1.next;
-            } else {
-                l2 = l2.next;
-            }
+|
+        if(l1==null || l2==null){
+            return null;
         }
-        return (dummyNode.next);
+
+        Node templ1 = l1;
+        Node templ2 = l2;
+
+        while(templ1!=templ2){
+            templ1 = templ1==null? l2 : templ1.next;
+            templ2 = templ2==null? l1 : templ2.next;
+        }
+        return templ1;
     }
 
     public static void print(Node head) {
