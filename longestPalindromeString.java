@@ -20,16 +20,16 @@ public class longestPalindromeString {
         for (int i = 0; i < str.length(); i++) { // Start from the first character
 
             // Odd length palindromes
-            low = i;
-            high = i;
-            while (low >= 0 && high < str.length() && str.charAt(low) == str.charAt(high)) {
-                if (high - low > end - start) {
-                    start = low;
-                    end = high;
-                }
-                low--;
-                high++;
-            }
+            // low = i;
+            // high = i;
+            // while (low >= 0 && high < str.length() && str.charAt(low) == str.charAt(high)) {
+            //     if (high - low > end - start) {
+            //         start = low;
+            //         end = high;
+            //     }
+            //     low--;
+            //     high++;
+            // }
 
             // Even length palindromes
             low = i;
