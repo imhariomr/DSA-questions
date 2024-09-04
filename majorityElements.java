@@ -11,9 +11,7 @@ public class majorityElements {
             hm.put(arr[i], hm.getOrDefault(arr[i], 0) + 1);
         }
 
-        Set<Integer> s = hm.keySet();
-
-        for (int i : s) {
+        for (int i : hm.keySet()) {
             if (hm.get(i) > m) {
                 System.out.println(i);
             }
