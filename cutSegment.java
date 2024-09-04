@@ -2,33 +2,43 @@ import java.util.*;
 
 public class cutSegment {
 
-    public static void solve(int n, int x, int y, int z) {
+    public static int solve(int dp[], int n, int x, int y, int z) {
 
-        int arr[] = new int[3];
-        arr[0] = x;
-        arr[1] = y;
-        arr[2] = z;
-
-        Arrays.sort(arr);
-
-        int i = 0;
-        int count = 0;
-        int min = arr[i];
-
-        while (n > 0) {
-            if (n > min) {
-                n = n - min;
-                count++;
-            } else {
-                min = arr[i + 1];
-            }
+        if (n == 0) {
+            return 0;
         }
 
-        System.out.println(count);
+        if (n < 0) {
+            return Integer.MIN_VALUE;
+        }
+
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+
+        int a = solve(dp, n - x, x, y, z) + 1;
+        int b = solve(dp, n - y, x, y, z) + 1;
+        int c = solve(dp, n - z, x, y, z) + 1;
+
+        dp[n] = Math.max(a, Math.max(b, c));
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
         int n = 4, x = 2, y = 1, z = 1;
-        solve(n, x, y, z);
+        int[] dp = new int[n + 1];
+
+        for (int i = 0; i <= n; i++) {
+            dp[i] = -1;
+        }
+
+        int ans = solve(dp, n, x, y, z);
+
+        if (ans < 0) {
+            System.out.println(0);
+        } else {
+            System.out.println(ans);
+        }
     }
 }
