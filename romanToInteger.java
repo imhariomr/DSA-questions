@@ -6,44 +6,44 @@ public class romanToInteger {
         String roman = "MMXXIII";
         int n = roman.length();
         int ans = 0;
+        int answer = 0;
+        int prevValue = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < roman.length(); i++) {
+            char s = roman.charAt(i);
+            int currentValue = 0;
 
-            char ch = roman.charAt(i);
-
-            switch (ch) {
+            switch (s) {
                 case 'I':
-                    ans += 1;
+                    currentValue = 1;
                     break;
-
                 case 'V':
-                    ans += 5;
+                    currentValue = 5;
                     break;
-
                 case 'X':
-                    ans += 10;
+                    currentValue = 10;
                     break;
-
                 case 'L':
-                    ans += 50;
+                    currentValue = 50;
                     break;
-
                 case 'C':
-                    ans += 100;
+                    currentValue = 100;
                     break;
-
                 case 'D':
-                    ans += 500;
+                    currentValue = 500;
                     break;
-
                 case 'M':
-                    ans += 1000;
-                    break;
-
-                default:
-                    ans += 0;
+                    currentValue = 1000;
                     break;
             }
+
+            if (prevValue < currentValue) {
+                answer += currentValue - 2 * prevValue;
+            } else {
+                answer += currentValue;
+            }
+            prevValue = currentValue;
+
         }
 
         System.out.println(ans);
