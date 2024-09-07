@@ -8,13 +8,12 @@ public class secondMostRepeatedString {
             hm.put(str[i], hm.getOrDefault(str[i], 0) + 1);
         }
 
-        Set<String> keys = hm.keySet();
         int value = 0;
 
         int firstMax = Integer.MIN_VALUE;
         int secondMax = Integer.MIN_VALUE;
 
-        for (String st : keys) {
+        for (String st : hm.keySet()) {
 
             value = hm.get(st);
             if (value > firstMax) {
@@ -24,7 +23,7 @@ public class secondMostRepeatedString {
                 secondMax = value;
             }
         }
-        for (String st : keys) {
+        for (String st : hm.keySet()) {
             value = hm.get(st);
             if (value == secondMax) {
                 return st;
